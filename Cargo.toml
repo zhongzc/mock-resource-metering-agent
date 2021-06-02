@@ -1,0 +1,28 @@
+[package]
+name = "mock-resource-metering-agent"
+version = "0.1.0"
+edition = "2018"
+
+[features]
+default = ["protobuf-codec"]
+protobuf-codec = [
+    "kvproto/protobuf-codec",
+    "grpcio/protobuf-codec",
+    "protobuf/bytes",
+]
+prost-codec = [
+    "kvproto/prost-codec",
+    "grpcio/prost-codec",
+]
+
+
+[dependencies]
+kvproto = { git = "https://github.com/zhongzc/kvproto", branch = "pr/773", default-features = false }
+grpcio = { version = "0.8",  default-features = false, features = ["openssl-vendored"] }
+protobuf = "2.8"
+futures = "0.3"
+hex = "0.4"
+
+[patch.crates-io]
+protobuf = { git = "https://github.com/pingcap/rust-protobuf", rev = "82b49fea7e696fd647b5aca0a6c6ec944eab3189" }
+protobuf-codegen = { git = "https://github.com/pingcap/rust-protobuf", rev = "82b49fea7e696fd647b5aca0a6c6ec944eab3189" }
